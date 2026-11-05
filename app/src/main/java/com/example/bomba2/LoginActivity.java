@@ -16,6 +16,7 @@ public class LoginActivity extends AppCompatActivity {
     private static final String KEY_USERNAME = "saved_username";
     private static final String KEY_PASSWORD = "saved_password";
     private static final String KEY_REMEMBER = "remember_user";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,9 +31,26 @@ public class LoginActivity extends AppCompatActivity {
 
         String registeredUsername = getIntent().getStringExtra("username");
         String registeredPassword = getIntent().getStringExtra("password");
+        boolean hasRememberedLogin = preferences.getBoolean(KEY_REMEMBER, false);
+        String savedUsername = hasRememberedLogin
+                ? preferences.getString(KEY_USERNAME, "")
+                : null;
+        String savedPassword = hasRememberedLogin
+                ? preferences.getString(KEY_PASSWORD, "")
+                : null;
+
+        if (hasRememberedLogin) {
+            usernameInput.setText(savedUsername);
+            passwordInput.setText(savedPassword);
+            rememberMeCheckbox.setChecked(true);
+        }
+
         if (registeredUsername != null) {
             usernameInput.setText(registeredUsername);
         }
+
+        String expectedUsername = registeredUsername != null ? registeredUsername : savedUsername;
+        String expectedPassword = registeredPassword != null ? registeredPassword : savedPassword;
 
         loginButton.setOnClickListener(view -> {
             String username = usernameInput.getText().toString().trim();
@@ -40,9 +58,9 @@ public class LoginActivity extends AppCompatActivity {
 
             if (username.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this, "יש למלא את כל השדות", Toast.LENGTH_SHORT).show();
-            } else if (registeredUsername == null || registeredPassword == null) {
+            } else if (expectedUsername == null || expectedPassword == null) {
                 Toast.makeText(this, "יש להירשם קודם", Toast.LENGTH_SHORT).show();
-            } else if (username.equals(registeredUsername) && password.equals(registeredPassword)) {
+            } else if (username.equals(expectedUsername) && password.equals(expectedPassword)) {
                 if (rememberMeCheckbox.isChecked()) {
                     preferences.edit()
                             .putString(KEY_USERNAME, username)
