@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F4F7FB"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    android:layoutDirection="rtl">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -44,6 +45,7 @@
             android:layout_height="56dp"
             android:layout_marginBottom="14dp"
             android:backgroundTint="#CBD5E1"
+            android:gravity="center_vertical|right"
             android:hint="שם משתמש"
             android:inputType="text"
             android:paddingHorizontal="16dp"
@@ -55,6 +57,7 @@
             android:layout_height="56dp"
             android:layout_marginBottom="14dp"
             android:backgroundTint="#CBD5E1"
+            android:gravity="center_vertical|right"
             android:hint="סיסמה (לפחות 6 תווים)"
             android:inputType="textPassword"
             android:paddingHorizontal="16dp"
@@ -66,6 +69,7 @@
             android:layout_height="56dp"
             android:layout_marginBottom="22dp"
             android:backgroundTint="#CBD5E1"
+            android:gravity="center_vertical|right"
             android:hint="אימות סיסמה"
             android:inputType="textPassword"
             android:paddingHorizontal="16dp"
