@@ -56,13 +56,22 @@
             android:id="@+id/etPass"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:layout_marginBottom="22dp"
+            android:layout_marginBottom="8dp"
             android:backgroundTint="#CBD5E1"
             android:gravity="center_vertical|right"
             android:hint="סיסמה"
             android:inputType="textPassword"
             android:paddingHorizontal="16dp"
             android:singleLine="true" />
+
+        <CheckBox
+            android:id="@+id/cbRememberMe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="14dp"
+            android:buttonTint="#8B5CF6"
+            android:text="@string/remember_me"
+            android:textColor="#101827" />
 
         <Button
             android:id="@+id/btnLogin"

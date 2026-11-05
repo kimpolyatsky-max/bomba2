@@ -3,6 +3,7 @@ package com.example.bomba2;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,6 +19,7 @@ public class LoginActivity extends AppCompatActivity {
         EditText usernameInput = findViewById(R.id.etUser);
         EditText passwordInput = findViewById(R.id.etPass);
         Button loginButton = findViewById(R.id.btnLogin);
+        CheckBox rememberMeCheckbox = findViewById(R.id.cbRememberMe);
         TextView registerLink = findViewById(R.id.tvToRegister);
 
         String registeredUsername = getIntent().getStringExtra("username");
@@ -35,7 +37,10 @@ public class LoginActivity extends AppCompatActivity {
             } else if (registeredUsername == null || registeredPassword == null) {
                 Toast.makeText(this, "יש להירשם קודם", Toast.LENGTH_SHORT).show();
             } else if (username.equals(registeredUsername) && password.equals(registeredPassword)) {
-                Toast.makeText(this, "התחברת בהצלחה!", Toast.LENGTH_SHORT).show();
+                String rememberStatus = rememberMeCheckbox.isChecked()
+                        ? "תיבת זכור אותי מסומנת"
+                        : "תיבת זכור אותי לא מסומנת";
+                Toast.makeText(this, rememberStatus, Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(this, "שם המשתמש או הסיסמה שגויים", Toast.LENGTH_SHORT).show();
             }
